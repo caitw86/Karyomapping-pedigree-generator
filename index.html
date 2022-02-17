@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KM Pedigree</title>
+    <link href="styles.css" rel="stylesheet">    
+</head>
+
+<body>
+    <div id = "heading">
+        <h1>Karyomapping pedigree and embryo prediction generator</h1>
+    </div>
+    <div id = "container">   
+        <!--Collect user input about family-->
+        <div id = "inheritance_div">
+            <h3>Inheritance</h3>
+            <form id="inheritance2">
+                <input type="radio" id = "autosomal_dominant" name = "Inheritance" value = "autosomal_dominant" checked = "checked" onchange = "inheritance();">
+                <label for="autosomal_dominant">Autosomal Dominant</label><br>
+                <input type="radio" id = "autosomal_recessive" name = "Inheritance" value = "autosomal_recessive" onchange = "inheritance();">
+                <label for="autosomal_recessive">Autosomal Recessive</label><br>
+                <input type="radio" id = "Xlinked_dominant" name = "Inheritance" value = "Xlinked_dominant" onchange = "inheritance();">
+                <label for="Xlinked_dominant">X-linked Dominant</label><br>
+                <input type="radio" id = "Xlinked_recessive" name = "Inheritance" value = "Xlinked_recessive" onchange = "inheritance();">
+                <label for="Xlinked_recessive">X-linked Recessive</label><br>
+            </form>
+            <br><button type='button' class = "center" onclick="Inheritance_next();">Next</button><br>
+        </div>
+        <!--if didnt select autosomal recssive as whether maternal or paternal refernece-->
+        <div id = "which_parental">
+            <h3>Which parental phase is your reference?</h3>
+            <input type="radio" id = "paternal" name = "parental_reference" checked = "checked" value = "paternal">
+            <label for="paternal">Paternal</label><br>
+            <input type="radio" id = "maternal" name = "parental_reference" value = "maternal">
+            <label for="maternal">Maternal</label><br>
+            <br>
+            <div class = "center">
+                <button type='button' onclick="Inheritance_back();">Back</button>
+                <button type='button' onclick="Which_parental_next();">Next</button>
+            </div>
+        </div>
+        <!--if did pick autosomal recessive ask if using sibling as a reference-->
+        <div id = "sibling_as_ref">
+            <h3>Is your reference a sibling?</h3>
+            <input type="radio" id = "sibling_yes" name = "sibling_ref" value = "sibling_yes">
+            <label for="sibling_yes">Yes</label><br>
+            <input type="radio" id = "sibling_no" name = "sibling_ref" checked = "checked" value = "sibling_no">
+            <label for="sibling_no">No</label><br>
+            <br>
+            <div class = "center">
+                <button type='button' onclick="Inheritance_back();">Back</button>
+                <button type='button' onclick="sibling_ref_next();">Next</button><br>
+            </div>
+        </div>
+
+        <!--if auto rec and using sibling as a ref ask for gender-->
+        <div id = "sibling_sex">
+            <h3>What is the gender of your reference</h3>
+            <input type="radio" id = "sibling_ref_male" name = "sibling_sex" value = "XY" onchange = "inheritance();" >
+            <label for="sibling_ref_male">Male</label><br>
+            <input type="radio" id = "sibling_ref_female" name = "sibling_sex" value = "XX" onchange = "inheritance();" >
+            <label for="sibling_ref_female">Female</label><br>
+            <input type="radio" id = "sibling_ref_unknown" name = "sibling_sex" checked = "checked" value = "unknown" onchange = "inheritance();" >
+            <label for="sibling_ref_unknown">Unknown</label><br>
+            <br>
+            <div class="center">
+                <button type='button' onclick="Inheritance_next();">Back</button>
+                <button type='button' onclick="sibling_sex_next();">Next</button><br>
+            </div>
+        </div>
+        <div id = "references">
+            <!--maternal reference-->
+            <div id = "mat_ref">
+                <h3>Select maternal reference</h3>
+                <form>
+                    <input type="radio" id = "noneM" name = "referenceM" value = "none" checked = "checked" onchange = "inheritance();" >
+                    <label for="none">None</label><br>
+                    <input type="radio" class = "sibling" id = "male_sibling" name = "referenceM" value = "male_sibling" onchange = "inheritance();" >
+                    <label for="male_sibling" class = "sibling">Male sibling</label><br class = "sibling">
+                    <input type="radio" class = "sibling" id = "female_sibling" name = "referenceM" value = "female_sibling" onchange = "inheritance();">
+                    <label for="female_sibling" class = "sibling">Female sibling</label><br class = "sibling">
+                    <input type="radio" class = "sibling" id = "unknown_sibling" name = "referenceM" value = "sibling" onchange = "inheritance();">
+                    <label for="unknown_sibling" class = "sibling">Unknown gender sibling</label><br class = "sibling">
+                    <input type="radio" id = "grandmother" name = "referenceM" value = "grandmother" onchange = "inheritance();">
+                    <label for="grandmother">Grandmother</label><br>
+                    <input type="radio" id = "grandfather" name = "referenceM" value = "grandfather" onchange = "inheritance();">
+                    <label for="grandfather">Grandfather</label><br>
+                </form> 
+            </div>
+            <!--paternal reference-->
+            <div id = "pat_ref">
+                <h3>Select paternal reference</h3>
+                <form>
+                    <input type="radio" id = "noneP" name = "referenceP" value = "none" checked = "checked" onchange = "inheritance();">
+                    <label for="noneP">None</label><br>
+                    <input type="radio" class = "sibling" id = "male_siblingP" name = "referenceP" value = "male_sibling" onchange = "inheritance();">
+                    <label for="male_siblingP" class = "sibling">Male sibling</label><br  class = "sibling">
+                    <input type="radio" class = "sibling" id = "female_siblingP" name = "referenceP" value = "female_sibling" onchange = "inheritance();">
+                    <label for="female_siblingP" class = "sibling">Female sibling</label><br class = "sibling">
+                    <input type="radio" class = "sibling" id = "unknown_siblingP" name = "referenceP" value = "sibling" onchange = "inheritance();">
+                    <label for="unknown_siblingP" class = "sibling">Unknown gender sibling</label><br class = "sibling">
+                    <input type="radio" id = "grandmotherP" name = "referenceP" value = "grandmother" onchange = "inheritance();">
+                    <label for="grandmotherP">Grandmother</label><br>
+                    <input type="radio" id = "grandfatherP" name = "referenceP" value = "grandfather" onchange = "inheritance();">
+                    <label for="grandfatherP">Grandfather</label><br>
+                </form> 
+            </div><br>
+            <div class = "center">
+                <button type='button' onclick="Inheritance_next();">Back</button>
+                <button type='button' onclick="reference_next();">Next</button><br>
+            </div>
+        </div>
+        <!--Genotypes-->
+        <div id = "genotypes">
+            <h3>Genotypes</h3>
+            <form class = "test" id="mother">
+                <label class = "dropdownlab" for="dropdown">Mother</label><br>
+                <select name="dropdown" id="dropdown"></select><br><br>
+            </form> 
+            <form id="father">
+                <label class = "dropdownlab" for="dropdown">Father</label><br>
+                <select name="dropdown" id="dropdown"></select><br><br>
+            </form> 
+            <form id="referenceM">
+                <label class = "dropdownlab sibling" id = "ref1" for="dropdown">Maternal Reference</label>
+                <label class = "dropdownlab" id = "ref2" for="dropdown">Sibling</label><br>
+                <select name="dropdown" id="dropdown" ></select><br><br>
+            </form> 
+            <form class = sibling id="referenceP">
+                <label class = "dropdownlab" for="dropdown">Paternal Reference</label><br>
+                <select name="dropdown" id="dropdown" ></select><br>
+            </form><br class = sibling> <br>
+            <div class = "center">
+                <button type='button' onclick="Inheritance_next();">Back</button>
+                <button type='button' onclick="Add_names();">Add Names</button>
+                <button type="button" onclick="generate_pedigree();">Generate Pedigree</button>
+            </div>
+        </div>
+        <!--Family member names-->
+        <div id = "enter_names">
+            <h3>Family members names (optional)</h3>
+            <fieldset id="names">
+                <label class = "dropdownlab" for="mother_name">Mother</label><br>
+                <input type="text" id="mother_name" name="mother_name" placeholder="Mother's name" onchange="update_names();"><br><br>
+                <label class = "dropdownlab" for="father_name">Father</label><br>
+                <input type="text" id="father_name" name="father_name" placeholder="Father's name" onchange="update_names();"><br><br>
+                <label class = "dropdownlab" for="sibling_name">Sibling</label><br>
+                <input type="text" id="sibling_name" name="sibling_name" placeholder="Sibling's name" onchange="update_names();"><br><br>
+                <label class = "dropdownlab" for="matGM_name">Maternal Grandmother</label><br>
+                <input type="text" id="matGM_name" name="matGM_name" placeholder="Mat grandmother's name" onchange="update_names();"><br><br>
+                <label class = "dropdownlab" for="matGF_name">Maternal Grandfather</label><br>
+                <input type="text" id="matGF_name" name="matGF_name" placeholder="Mat grandfather's name" onchange="update_names();"><br><br>
+                <label class = "dropdownlab" for="patGM_name">Paternal Grandmother</label><br>
+                <input type="text" id="patGM_name" name="patGM_name" placeholder="Pat grandmother's name" onchange="update_names();"><br><br>
+                <label class = "dropdownlab" for="patGF_name">Paternal Grandfather</label><br>
+                <input type="text" id="patGF_name" name="patGF_name" placeholder="Pat grandfather's name" onchange="update_names();"><br><br>
+            </fieldset>
+            <div class = "center">
+                <button type='button' onclick="remove_names();">Back</button>
+                <button type="button" onclick="generate_pedigree();">Generate Pedigree</button> 
+            </div>
+        </div>
+        <br><button class="center" id="download" type="button">
+            <a download="Pedigree.jpg" href="" onclick="download_img(this);"> Save Pedigree</a>
+        </button>
+        <!-- <button type='button' id = "generate_pedigree" onclick="generate_pedigree();">Generate Pedigree</button> -->
+        <p id="error_message"></p>
+    </div>    
+    <canvas id="canvas" width="1000" height="1100"></canvas>
+    <br>
+      
+    <!--Javascript file-->
+    <script type="text/javascript" src="script.js"></script>
+
+</body>
+</html>

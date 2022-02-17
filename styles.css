@@ -1,0 +1,131 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+
+body {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    height:fit-content;
+    letter-spacing: 1px;
+    font-size: 20px;
+    line-height: 30px;
+    color: #777;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%) fixed;
+  }
+  
+h1{
+  color: rgb(48, 48, 48);
+  line-height:50px;
+  text-align: center;
+}
+h3{
+  color: rgb(48, 48, 48);
+  font-size: 30px;
+  text-align: center;
+}
+
+canvas{
+  background-color: white;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#dropdown{
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  letter-spacing: 1px;
+  font-size: 20px;
+  color: rgb(48, 48, 48);
+}
+
+button {
+  background-color: indigo;
+  border: none;
+  color: white;
+  padding: 15px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  border-radius: 8px;
+}
+
+.center {
+  margin: 0;
+  position: relative;
+  text-align: center;
+  left: 50%;
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+#container {
+  position: relative;
+  width:400px;
+  padding: 10px 30px 10px 30px;
+  margin: 0 auto;
+  background-color: #fcfafb5b;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+input[type="radio"] {
+	accent-color: Indigo;
+}
+
+input[type="text"] {
+  font-weight: 100;
+  letter-spacing: 1px;
+  font-size: 20px;
+  color: rgb(48, 48, 48);
+}
+
+#error_message{
+  font-weight: bolder;
+  color: red;
+  text-align: center;
+}
+
+input{
+    display:inline-block;
+}
+
+fieldset{
+border:none;
+}
+
+label {
+  float: left;
+  clear: none;
+  display: block;
+  padding: 0px 1em 0px 20px;
+  margin-left: 0;
+}
+.dropdownlab{
+  padding: 0px 1em 0px 0px;
+}
+  
+input[type=radio],
+input.radio {
+  transform: scale(2);
+  float: left;
+ 
+  margin:9px 0px 0px 0px;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+a:visited {
+  color: White;
+  background-color: transparent;
+}
+
+#download{
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  background-color: rgb(180, 97, 240);
+  color: white;
+}
